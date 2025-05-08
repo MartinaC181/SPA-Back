@@ -1,12 +1,12 @@
 import { IService } from "./type";
 import { serviceDao } from "./dao";
 
-const { getServiceByTitle, getAllServices, createService, editService, deleteService } = serviceDao;
+const { getServiceByName, getAllServices, createService, editService, deleteService } = serviceDao;
 
 class ServiceService {
-    async getServiceByTitle(title: string) {
+    async getServiceByName(name: string) {
         try {
-            const service = await getServiceByTitle(title);
+            const service = await getServiceByName(name);
             return service;
         } catch (error) {
             throw Error((error as Error).message);

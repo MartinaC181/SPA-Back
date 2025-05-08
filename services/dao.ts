@@ -2,9 +2,9 @@ import { IService} from "./type";
 import Service from "./model";
 
 class ServiceDao {
-    async getServiceByTitle(title: string) {
+    async getServiceByName(name: string) {
         try {
-            const service = await Service.findOne({ title });
+            const service = await Service.findOne({ name });
             return service;
         } catch (error) {
             throw Error((error as Error).message);

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { serviceService } from './service';
 import { IService } from './type';
 
-const { createService, getServices, getServiceByTitle, editService, deleteService } = serviceService;
+const { createService, getServices, getServiceByName, editService, deleteService } = serviceService;
 
 class ServiceController {
     async createService(req: Request, res: Response) {
@@ -28,9 +28,18 @@ class ServiceController {
     }
     
     async getService(req: Request, res: Response) {
-        const title = req.params.title
+        const name = req.params.title
         try {
-        const service = await getServiceByTitle(title);
+        const service = await getServiceByName(name);
+        res.status(200).json(service);
+        } catch (error:any) {
+        res.status(400).json({ message: error.message });
+        }
+    }
+    async getServiceByName(req: Request, res: Response) {
+        const name = req.params.name
+        try {
+        const service = await getServiceByName(name);
         res.status(200).json(service);
         } catch (error:any) {
         res.status(400).json({ message: error.message });
