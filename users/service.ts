@@ -68,8 +68,16 @@ class UserService {
             process.env.JWT_SECRET!,
             { expiresIn: "1h" }
         );
-        console.log(token);
-        return token;
+        return {
+            token,
+            user: {
+                email: existingUser.email,
+                first_name: existingUser.first_name,
+                last_name: existingUser.last_name,
+                is_admin: existingUser.is_admin,
+                role: existingUser.role
+            }
+        };
     }
     async editUser(id: string, user: IUser) {
         try {
