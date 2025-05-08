@@ -6,10 +6,10 @@ const { createService, getServices, getServiceByTitle, editService, deleteServic
 
 class ServiceController {
     async createService(req: Request, res: Response) {
-        const { id, nombre, tipo, precio, Image} = req.body;
+        const { descripcion, nombre, tipo, precio, Image} = req.body;
         try {
         const service: IService = {
-            id, nombre, tipo, precio, Image
+            descripcion, nombre, tipo, precio, Image
         };
         const newService = await createService(service);
         res.status(201).json(newService);
