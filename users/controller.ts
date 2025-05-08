@@ -34,6 +34,7 @@ export const userController = {
             const user = await loginUser(req.body);
             res.status(200).send(user);
         } catch (error) {
+            console.error("Error in loginUser:", error);
             res.status(500).send(error);
         }
     },

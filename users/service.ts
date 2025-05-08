@@ -44,6 +44,7 @@ class UserService {
         const { email, password } = user;
         const existingUser = await getUserByMail(email);
 
+
         //verificamos si el usuario existe
         if (!existingUser) {
             throw new Error("Invalid email");
@@ -55,14 +56,19 @@ class UserService {
             throw new Error("Invalid password");
         }
 
+        if (!process.env.JWT_SECRET) {
+            throw new Error("JWT_SECRET is not defined in environment variables");
+        }
+
         const token = sign(
             {
                 userId: existingUser._id,
                 email: existingUser.email,
             },
-            "supersecurelongrandomstringwithspecialchars!@#123",
+            process.env.JWT_SECRET!,
             { expiresIn: "1h" }
         );
+        console.log(token);
         return token;
     }
     async editUser(id: string, user: IUser) {
