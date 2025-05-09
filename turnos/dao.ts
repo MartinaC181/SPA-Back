@@ -1,14 +1,12 @@
 import { ITurno } from "./type";
 import Turno from "./model";
-import Cliente from "./model";
-import Servicio from "./model";
 
 class TurnoDao {
     async getAllTurnos(): Promise<ITurno[]> {
         try {
             const turnos = await Turno.find()
-                .populate("clienteId", "first_name email")
-                .populate("servicioId", "nombre precio descripcion");
+                .populate("cliente", "first_name email")
+                .populate("servicio", "nombre precio descripcion");
             return turnos;
         } catch (error) {
             console.error("Error al obtener los turnos:", error);

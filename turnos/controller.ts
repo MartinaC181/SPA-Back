@@ -25,9 +25,9 @@ class TurnoController {
     }
 
     async createTurno(req: Request, res: Response) {
-        const { servicioId, fecha, hora, clienteId, estado } = req.body;
+        const { servicio, fecha, hora, cliente, estado } = req.body;
         try {
-            const turno: ITurno = { servicioId, fecha, hora, clienteId, estado };
+            const turno: ITurno = { servicio, fecha, hora, cliente, estado };
             const newTurno = await createTurno(turno);
             res.status(201).json(newTurno);
         } catch (error: any) {

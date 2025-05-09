@@ -2,8 +2,8 @@ import { Schema, model, Types} from "mongoose";
 import { ITurno } from "./type";
 
 const turnoSchema = new Schema<ITurno>({
-    clienteId: { type: Types.ObjectId, ref: "User", required: true },
-    servicioId: { type: Types.ObjectId, ref: "Service", required: true },
+    cliente: { type: Types.ObjectId, ref: "User", required: true },
+    servicio: { type: Types.ObjectId, ref: "Service", required: true },
     fecha: { type: Date, required: true },
     hora: { type: String, required: true },
     estado: { type: String, enum: ["pendiente", "confirmado", "cancelado", "realizado"], default: "pendiente" },
