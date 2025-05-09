@@ -6,7 +6,7 @@ const serviceRouter = express.Router();
 const { createService, getServices, getService, editService, deleteService } = serviceController;
 
 serviceRouter.get("/", getServices);
-serviceRouter.get("/:id", getService);
+serviceRouter.get("/name/:name", getService);
 serviceRouter.post("/create", createService);
 serviceRouter.delete("/delete/:id", deleteService);
 serviceRouter.put("/edit/:id", editService);

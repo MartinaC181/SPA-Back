@@ -28,9 +28,9 @@ class ServiceController {
     }
     
     async getService(req: Request, res: Response) {
-        const name = req.params.title
+        const {nombre} = req.params;
         try {
-        const service = await getServiceByName(name);
+        const service = await getServiceByName(nombre);
         res.status(200).json(service);
         } catch (error:any) {
         res.status(400).json({ message: error.message });
