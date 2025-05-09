@@ -16,9 +16,9 @@ const {
 } = userDao;
 
 class UserService {
-    async getUser(id: string) {
+    async getUser(correo: string) {
         try {
-            const user = await getUserById(id);
+            const user = await getUserByMail(correo);
             return user;
         } catch (error) {
             throw Error((error as Error).message);

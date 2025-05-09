@@ -14,8 +14,9 @@ export const userController = {
         }
     },
     async getUser(req: Request, res: Response) {
+        const { correo } = req.params;
         try {
-            const user = await getUser(req.params.id);
+            const user = await getUser(correo);
             res.status(200).send(user);
         } catch (error) {
             res.status(500).send(error);
