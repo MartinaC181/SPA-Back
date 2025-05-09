@@ -9,6 +9,6 @@ const serviceSchema = new Schema<IService>({
     descripcion: { type: String, required: false },
 });
 
-const Service = model<IService>('Recipe', serviceSchema);
+const Service = model<IService>('Service', serviceSchema);
 
 export default Service;
