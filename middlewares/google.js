@@ -15,6 +15,7 @@ passport.use("auth-google",new GoogleStrategy(
   },
   function (accessToken, refreshToken, profile, done) {
     console.log('profile', profile);
+    
     const response = emails.includes(profile.emails[0].value);
 
     if (response) {
