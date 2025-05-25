@@ -6,7 +6,7 @@ const userRouter = express.Router();
 const { getUsers, getUser, createUser, loginUser, deleteUser, editUser } = userController;
 
 userRouter.get("/", getUsers);
-userRouter.get("/:id", getUser);
+userRouter.get("/correo/:correo", getUser);
 userRouter.post("/register", createUser);
 userRouter.post("/login", loginUser);
 userRouter.get("/login/google", (req, res) => {

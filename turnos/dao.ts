@@ -4,16 +4,21 @@ import Turno from "./model";
 class TurnoDao {
     async getAllTurnos(): Promise<ITurno[]> {
         try {
-            const turnos = await Turno.find({});
+            const turnos = await Turno.find()
+                .populate("cliente", "first_name email")
+                .populate("servicio", "nombre precio descripcion");
             return turnos;
         } catch (error) {
-            throw new Error("Error fetching turnos: " + error);
+            console.error("Error al obtener los turnos:", error);
+            throw new Error("Error al obtener los turnos");
         }
     }
     async getTurnoById(turnoId: string): Promise<ITurno | null> {
         try {
-            const turno = await Turno.findById(turnoId);
-            return turno;   
+            const turno = await Turno.findById(turnoId)
+                .populate("clienteId", "nombre email")
+                .populate("servicioId", "nombre precio descripcion");
+            return turno;
         } catch (error) {
             throw new Error("Error fetching turno: " + error);
         }
