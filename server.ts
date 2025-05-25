@@ -2,6 +2,9 @@
 import dotenv from 'dotenv';
 import dbconnect from './config/db';
 import routes from './routes';
+import userRouter from './users/routes';
+import passport from 'passport';
+import './middlewares/google.js';
 
 dotenv.config();
 
@@ -13,6 +16,7 @@ const HOST = process.env.HOST || "localhost";
 const app= express();
 
 app.use(express.json());
+app.use(passport.initialize());
 
 app.use(cors(
   {
@@ -23,6 +27,13 @@ app.use(cors(
 ));
 
 app.use('/api', routes);
+app.use('/auth', passport.authenticate('auth-google', {
+  scope: [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  session: false
+}), userRouter);
 
 dbconnect();
 

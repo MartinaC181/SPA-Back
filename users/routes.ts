@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import { userController } from "./controller";
 
 const userRouter = express.Router();
@@ -9,6 +9,9 @@ userRouter.get("/", getUsers);
 userRouter.get("/:id", getUser);
 userRouter.post("/register", createUser);
 userRouter.post("/login", loginUser);
+userRouter.get("/login/google", (req, res) => {
+  res.send(req.user);
+});
 userRouter.delete("/:id", deleteUser);
 userRouter.put("/:id", editUser);
 
