@@ -24,6 +24,17 @@ class UserService {
             throw Error((error as Error).message);
         }
     }
+    async getUserById(id: string) {
+        try {
+            const user = await getUserById(id);
+            if (!user) {
+                throw new Error("User not found");
+            }
+            return user;
+        } catch (error) {
+            throw Error((error as Error).message);
+        }
+    }
     async getUsers() {
         try {
             const users = await getAllUsers();

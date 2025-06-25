@@ -13,10 +13,19 @@ export const userController = {
             res.status(500).send(error);
         }
     },
-    async getUser(req: Request, res: Response) {
+    async getUserByCorreo(req: Request, res: Response) {
         const { correo } = req.params;
         try {
             const user = await getUser(correo);
+            res.status(200).send(user);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    },
+    async getUserById(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const user = await userService.getUserById(id);
             res.status(200).send(user);
         } catch (error) {
             res.status(500).send(error);
